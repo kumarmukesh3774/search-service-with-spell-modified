@@ -47,7 +47,7 @@ public class SearchController {
     List<Document> searchResults = new ArrayList<Document>();
 
     mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
-    database = mongoClient.getDatabase("OfferShopperDb");
+    database = mongoClient.getDatabase("OfferShopperDB");
     collection = database.getCollection("offers");
 
     collection.createIndex(new Document("category", "text").append("offerTitle", "text").append("keywords", "text"),
@@ -98,7 +98,7 @@ public class SearchController {
     List<Document> searchResults = new ArrayList<Document>();
 
     mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
-    database = mongoClient.getDatabase("OfferShopperDb");
+    database = mongoClient.getDatabase("OfferShopperDB");
     collection = database.getCollection("offers");
 
     collection.createIndex(new Document("category", "text").append("offerTitle", "text").append("keywords", "text"),
@@ -143,7 +143,7 @@ public class SearchController {
     List<Document> searchResults = new ArrayList<Document>();
 
     mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
-    database = mongoClient.getDatabase("OfferShopperDb");
+    database = mongoClient.getDatabase("OfferShopperDB");
     collection = database.getCollection("offers");
 
     collection.createIndex(new Document("category", "text"), new IndexOptions());

@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Title: search-service
+Implementation-Version: 0.0.1-SNAPSHOT
+Built-By: mukesh
+Implementation-Vendor-Id: com.offershopper
+Build-Jdk: 1.8.0_162
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-bo
+ ot-starter-parent/search-service
+Created-By: Maven Integration for Eclipse
+

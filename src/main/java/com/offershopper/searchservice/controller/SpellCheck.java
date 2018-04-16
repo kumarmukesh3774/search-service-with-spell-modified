@@ -34,7 +34,7 @@ public class SpellCheck {
      */
 
     MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
-    MongoDatabase database = mongoClient.getDatabase("OfferShopperDb");
+    MongoDatabase database = mongoClient.getDatabase("OfferShopperDB");
     MongoCollection<Document> collection = database.getCollection("soundex");
     MongoCursor cursor;
     String output="";
@@ -47,20 +47,24 @@ public class SpellCheck {
       misSpelled.add(input.substring(match.getFromPos(), match.getToPos()));
       String soundexCode = Soundex.getGode(input.substring(match.getFromPos(), match.getToPos()));
       cursor = collection.find(new Document("code", soundexCode)).iterator();
+      if(!cursor.hasNext())
       replacement=input.substring(match.getFromPos(), match.getToPos())+" ";
+      else{
+
         while (cursor.hasNext()) {
           Document article = (Document) cursor.next();
-          System.out.println(article.get("word"));
+         // System.out.println(article.get("word"));
           replacement=replacement+article.get("word")+" ";
           
           
         }
+      }
         System.out.println("\n\n"+replacement+"\n\n");
         output=input.replace(input.substring(match.getFromPos(), match.getToPos()), replacement);
-        for (String str : misSpelled) {
+/*        for (String str : misSpelled) {
 
           System.out.println(str);
-        }
+        }*/
 
     }
 

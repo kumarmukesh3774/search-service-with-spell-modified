@@ -22,7 +22,7 @@ public class SoundexLibraryController {
   public HashSet<String> insert(@RequestBody Document document) {
     // establishing connection
     MongoClient mongoClient = new MongoClient(new MongoClientURI("mongodb://localhost:27017"));
-    MongoDatabase database = mongoClient.getDatabase("OfferShopperDb");
+    MongoDatabase database = mongoClient.getDatabase("OfferShopperDB");
     MongoCollection<Document> collection = database.getCollection("soundex");
     MongoCursor cursor ;
     
@@ -30,10 +30,15 @@ public class SoundexLibraryController {
     String title = (String) document.get("offerTitle");
     String keywords = (String) document.get("keywords");
     String category = (String) document.get("category");
-    set.add(category.toLowerCase().trim());
+    //set.add(category.toLowerCase().trim());
     //index
     //collection.createIndex(new Document("word", 1), new IndexOptions().unique(true));  
     String regx="[,\\s]+";
+    String[] categorySplit = category.split(regx);
+    for (String str : categorySplit) {
+        set.add(str.toLowerCase().trim());
+        
+      }
     String[] titleSplit = title.split(regx);
     for (String str : titleSplit) {
       set.add(str.toLowerCase().trim());
